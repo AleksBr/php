@@ -27,18 +27,48 @@
 	/* 01 посчитать количество повторений в строке выражения Твин Пикс */
 
 	/* 2) заменить в строке Твин Пикс на Twin Peaks */
+		echo "-2-";
+		echo "<br>";
 		$engStr = "Twin Peaks";
 		$rusStr = "Твин Пикс";
 		echo str_replace($rusStr, $engStr, $myString);
+		echo "<br>";
+
 	/* 3) посчитать количество символов в строке */
+		echo "-3-";
+		echo "<br>";
+		$myLength = strlen(utf8_decode($myString));
+		echo $myLength; // 448
+		echo "<br>";
 
 	/* 4) посчитать количество символов без пробелов в строке */
+		echo "-4-";
+		echo "<br>";
+		$myLengthSp = strlen(utf8_decode(str_replace(" ", "", $myString)));
+		echo $myLengthSp; // 386
+		echo "<br>";
 
 	/* 5) убрать html-теги (<p>) в строке */
+		echo "-5-";
+		echo "<br>";
+		$noTags = strip_tags($myString);
+		echo $noTags;
+		echo "<br>";
 
 	/* 6) вывести строку в браузере как html-код */
+		echo "-6-";
+		echo "<br>";
+		$myHtmlA = htmlentities($myString);
+		$myHtmlB = html_entity_decode($myHtmlA);
+		echo $myHtmlB;
+		echo "<br>";
 
 	/* 7) первое слово "В" в начале тексте должно быть с большой буквы */
+		echo "-7-";
+		echo "<br>";
+		$firstBig = ucfirst($noTags);
+		echo $firstBig;
+		echo "<br>";
 
 ?>
 </body>
