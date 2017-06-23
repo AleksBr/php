@@ -1,5 +1,5 @@
 <?php
-
+// http://project260218.tilda.ws/lecture4
 $discography = array(
     array('id' => '12','year' => '1994','band' => 'Pink Floyd','genre' => 'rock','name' => 'Division Bell','count_songs' => '10'),
     array('id' => '13','year' => '1989','band' => 'Nirvana','genre' => 'grunge','name' => 'Bleach','count_songs' => '11'),
@@ -31,26 +31,38 @@ $discography = array(
     array('id' => '39','year' => '2000','band' => 'Oasis','genre' => 'rock','name' => 'Standing on the Shoulder of Giants','count_songs' => '13')
 );
 
-echo "<pre>";
-var_dump($discography);
-echo "</pre>";
-
-$tmpJanre = [];
-$janre = [];
+// Необходимо посчитать кол-во жанров
+$tmpGenre = [];
+$genre = [];
 
 foreach ($discography as $val) :
-    foreach ($val as $k => $v) :
-        if($k == 'genre'):
-            $tmpJanre[] = $v;
-        endif;
-    endforeach;
+    $tmpGenre[] = $val['genre'];
 endforeach;
-$janre = array_unique($tmpJanre);
-echo "<hr>";
-echo "<pre>";
-var_dump($janre);
-echo "</pre>";
 
+$genre = array_unique($tmpGenre);
+
+var_dump($genre);
+echo "<br>";
+echo count($genre);
+echo "<hr>";
+
+// Необходимо посчитать кол-во исполнителей
+
+$tmpBand = [];
+$band = [];
+
+foreach ($discography as $val) :
+    $tmpBand[] = $val['band'];
+endforeach;
+
+$band = array_unique($tmpBand);
+
+echo "<pre>";
+var_dump($band);
+echo "</pre>";
+echo "<br>";
+echo count($band);
+echo "<hr>";
 
 
 
