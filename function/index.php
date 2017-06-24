@@ -1,4 +1,4 @@
-<form method="post">
+<form method="get">
 	<input type="text" name="number">
 	<input type="submit">
 </form>
@@ -7,18 +7,32 @@
 	  Необходимо вывести на экран строку с количеством товаров следующего вида: "N товаров", где N - количество товаров. Нужно написать функцию, которая будет формировать строку с выводом в правильном склонении в зависимости от числа.
 	*/
 
-	$n = $_POST['number'];
+	if( isset($_GET['number']) ){
+		$numberUser = trim($_GET['number']);
+		echo "Результат: ";
+		getNumber( $numberUser );
+	}
 
-	function getNumber($num){
-		if(isset($num) && is_numeric($num)){
+	function getNumber($num = 0){
+		if (!is_numeric($num)){
+			echo "Введите число";
+		} else{
 			if($num <= 0){
 				echo "Товаров нет";
-			}
-		}		
+			} elseif ( $num == 1 ||  $num == 21 || $num == 31 || $num == 41 || $num == 51 || $num == 61 || $num == 71 || $num == 81) {
+				echo "$num товар";
+			} elseif ( $num == 2 ||  $num == 3 || $num == 4 || $num == 22 || $num == 23 || $num == 24 || $num == 32 || $num == 33 || $num == 34) {
+				echo "$num товара";
+			} else {
+				echo "$num товаров";
+			}			
+		}
 	}
 
 
 ?>
+
+<hr>
 
 товар 1,21,31,41,51
 
