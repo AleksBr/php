@@ -5,6 +5,7 @@
 	<title>function</title>
 </head>
 <body>
+<small>1 - окончание в зависимости от количества</small>
 <form method="get"><input type="text" name="number" placeholder="Введите число"><input type="submit"></form>
 <?php
 	//	http://project260218.tilda.ws/lecture6
@@ -41,7 +42,8 @@
 
 ?>
 <hr>
-<form method="get"><input type="text" name="revStr" value="<?php echo $_GET['revStr']; ?>" placeholder="Введите строку"><input type="submit"></form>
+<small>2 - принимать строку и переворачивать её (делать зеркальной)</small>
+<form method="get"><input type="text" name="revStr" value="<?php if(isset($_GET['revStr'])){ echo $_GET['revStr'];} ?>" placeholder="Введите строку"><input type="submit"></form>
 <?php 
 	/*
 		Необходимо написать функцию, которая будет в аргументе принимать строку и переворачивать её (делать зеркальной) 
@@ -69,6 +71,40 @@
 	}
 ?>
 <hr>
+<small>6 - преобразовывает Фамилия Имя Отчество в краткую запись Фамилия И.О.</small>
+<form method="get"><input type="text" name="nameUser" placeholder="Введите ФИО полностью"><input type="submit"></form>
+<?php 
+	/*
+		Необходимо написать функцию, которая будет преобразовывать строку Фамилия Имя Отчество в краткую запись Фамилия И.О.
+	*/
+
+	if(isset($_GET['nameUser'])){
+		$nameUser = trim($_GET['nameUser']);
+		echo "Результат: ";
+		getNameUsr( $nameUser );
+	}
+
+	function getNameUsr($name){
+		$arrayName = explode(" ", $name);
+
+		foreach ($arrayName as $key => $value) {
+			if(!preg_match('/[^A-Za-z]/', $value)){
+				if($key == 0){
+					echo $value . " ";
+				} else {
+					echo mb_strtoupper($value[0]) . ". ";
+				}			
+			} else {
+				if($key == 0){
+					echo $value . " ";
+				} else {
+					echo mb_strtoupper(substr($value, 0, 2)) . ". ";
+				}
+			}		
+		}		
+	}
+	
+ ?>
 
 </body>
 </html>
