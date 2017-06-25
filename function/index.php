@@ -1,27 +1,37 @@
-<form method="get">
-	<input type="text" name="number">
-	<input type="submit">
-</form>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>function</title>
+</head>
+<body>
+<form method="get"><input type="text" name="number" placeholder="Введите число"><input type="submit"></form>
 <?php
+	//	http://project260218.tilda.ws/lecture6
+	mb_internal_encoding("UTF-8");
+	setlocale(LC_ALL, 'Russian_Russia.65001');
 	/*
-	  Необходимо вывести на экран строку с количеством товаров следующего вида: "N товаров", где N - количество товаров. Нужно написать функцию, которая будет формировать строку с выводом в правильном склонении в зависимости от числа.
+		Необходимо вывести на экран строку с количеством товаров следующего вида: "N товаров", 
+	где N - количество товаров. Нужно написать функцию, которая будет формировать строку с выводом 
+	в правильном склонении в зависимости от числа.
 	*/
-
 	if( isset($_GET['number']) ){
 		$numberUser = trim($_GET['number']);
 		echo "Результат: ";
 		getNumber( $numberUser );
 	}
-
-	function getNumber($num = 0){
+	function getNumber($num){
 		if (!is_numeric($num)){
 			echo "Введите число";
-		} else{
-			if($num <= 0){
+		} else {
+			if ($num <= 0){
 				echo "Товаров нет";
-			} elseif ( $num == 1 ||  $num == 21 || $num == 31 || $num == 41 || $num == 51 || $num == 61 || $num == 71 || $num == 81) {
+			} elseif ( $num >= 201 ){
+				echo "Слишком много выбрано";
+			} elseif ( ($num == 1 ||  $num % 10 == 1) && $num != 11 ){
 				echo "$num товар";
-			} elseif ( $num == 2 ||  $num == 3 || $num == 4 || $num == 22 || $num == 23 || $num == 24 || $num == 32 || $num == 33 || $num == 34) {
+			} elseif ( ($num == 2 ||  $num == 3 || $num == 4 || $num % 10 == 2 || $num % 10 == 3 || $num % 10 == 4) &&
+						($num != 12 || $num != 13 || $num != 14 || $num != 112 || $num != 113 || $num != 114) ){
 				echo "$num товара";
 			} else {
 				echo "$num товаров";
@@ -29,13 +39,36 @@
 		}
 	}
 
-
 ?>
+<hr>
+<form method="get"><input type="text" name="revStr" value="<?php echo $_GET['revStr']; ?>" placeholder="Введите строку"><input type="submit"></form>
+<?php 
+	/*
+		Необходимо написать функцию, которая будет в аргументе принимать строку и переворачивать её (делать зеркальной) 
+	и возвращать полученный результат. При этом нельзя использовать стандартную функцию PHP strrev.
+	*/
 
+	if( isset($_GET['revStr']) ){
+		$stringUser = trim($_GET['revStr']);
+		echo "Результат: ";
+		getRevStr( $stringUser );
+	}
+	function getRevStr( $str ){
+		if(empty($str)){
+			echo "Пусто";
+		} else {
+			$strTmp = '';
+			$strRev = '';
+			$strLen = mb_strlen($str);
+			for ($i = $strLen-1; $i >= 0; $i--) {
+				$strTmp[] = $str[$i];
+			}
+			$strRev = implode("", $strTmp);
+			echo "$strRev";	
+		}				
+	}
+?>
 <hr>
 
-товар 1,21,31,41,51
-
-товара 2,3,4, 22,23,24, 32,33,34, 42,43,44, 52,53,54, 
-
-товаров 5,6,7,8,9,10, 11,12,13,14,15,16,17,18,19,20, 25,26,27,28,29,30, 35,36,37,38,39,40, 45,46,47,48,49,50, 55,56,57,58,59,60 
+</body>
+</html>
