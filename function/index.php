@@ -77,17 +77,14 @@
 	/*
 		Необходимо написать функцию, которая будет преобразовывать строку Фамилия Имя Отчество в краткую запись Фамилия И.О.
 	*/
-
 	if(isset($_GET['nameUser'])){
 		$nameUser = trim($_GET['nameUser']);
 		echo "Результат: ";
 		getNameUsr( $nameUser );
 	}
-
 	function getNameUsr($name){
 		$arrayName = explode(" ", $name);
-
-		foreach ($arrayName as $key => $value) {
+		foreach ($arrayName as $key => $value) :
 			if(!preg_match('/[^A-Za-z]/', $value)){
 				if($key == 0){
 					echo $value . " ";
@@ -98,12 +95,11 @@
 				if($key == 0){
 					echo $value . " ";
 				} else {
-					echo mb_strtoupper(substr($value, 0, 2)) . ". ";
+					echo mb_strtoupper(mb_substr($value, 0, 1)) . ". ";
 				}
 			}		
-		}		
-	}
-	
+		endforeach;		
+	}	
  ?>
 
 </body>
