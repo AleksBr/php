@@ -84,16 +84,16 @@
 	}
 	function getNameUsr($name){
 		$arrayName = explode(" ", $name);
-		foreach ($arrayName as $key => $value) :
+		foreach ($arrayName as $key => $value):
 			if(!preg_match('/[^A-Za-z]/', $value)){
 				if($key == 0){
-					echo $value . " ";
+					echo ucfirst($value) . " ";
 				} else {
 					echo mb_strtoupper($value[0]) . ". ";
 				}			
 			} else {
 				if($key == 0){
-					echo $value . " ";
+					echo mb_strtoupper(mb_substr($value, 0, 1)) . mb_substr($value, 1) . " ";
 				} else {
 					echo mb_strtoupper(mb_substr($value, 0, 1)) . ". ";
 				}
@@ -101,6 +101,8 @@
 		endforeach;		
 	}	
  ?>
+ <hr>
+
 
 </body>
 </html>
