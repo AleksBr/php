@@ -100,9 +100,41 @@
 			}		
 		endforeach;		
 	}	
- ?>
- <hr>
+?>
+<hr>
+<small>7 - определять мобильного оператора, исходя из полученного номера телефона</small>
+<form method="get">
+	<input style="width:400px" type="text" name="phoneUser" placeholder="Введите номер телефона в формате +XXXXXXXXXXX">
+	<input type="submit">
+</form>
+<?php 
+	/*
+		7. Необходимо написать функцию, которая будет определять мобильного оператора, исходя из полученного номера телефона
+	*/
+	if(isset($_GET['phoneUser'])){
+		$phoneUser = trim($_GET['phoneUser']);
+		echo "Ваш номер: $phoneUser <br>";
+		echo "Оператор: ";
+		getPhoneUsr( $phoneUser );
+	}
+	function getPhoneUsr( $phone ){
+		if (!is_numeric($phone)){
+			echo "Введите номер";
+		} else if ( !preg_match('/[0-9]{13}$/', $phone) ) {
 
+			$mobOper = [
+				'Киевстар'	=> '+38097',
+				'Vodafone'	=> '+38099',
+				'Lifecell'	=> '+38093',
+			];
+			$mobPart = mb_substr($phone, 0, 6);
+			$mobRes = array_search($mobPart, $mobOper);
+			echo $mobRes;
+		} else {
+			echo "неверный формат";
+		}
+	}
+?>
 
 </body>
 </html>
