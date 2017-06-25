@@ -28,10 +28,10 @@
 				echo "Товаров нет";
 			} elseif ( $num >= 201 ){
 				echo "Слишком много выбрано";
-			} elseif ( ($num == 1 ||  $num % 10 == 1) && $num != 11 ){
+			} elseif ( ($num == 1 ||  $num % 10 == 1) && ($num != 11 && $num != 111) ){
 				echo "$num товар";
 			} elseif ( ($num == 2 ||  $num == 3 || $num == 4 || $num % 10 == 2 || $num % 10 == 3 || $num % 10 == 4) &&
-						($num != 12 || $num != 13 || $num != 14 || $num != 112 || $num != 113 || $num != 114) ){
+						($num != 12 && $num != 13 && $num != 14 && $num != 112 && $num != 113 && $num != 114) ){
 				echo "$num товара";
 			} else {
 				echo "$num товаров";
