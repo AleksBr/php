@@ -12,7 +12,7 @@
 	mb_internal_encoding("UTF-8");
 	// setlocale(LC_ALL, 'ru_RU.UTF-8');
 	/*
-		Необходимо вывести на экран строку с количеством товаров следующего вида: "N товаров", 
+		1. Необходимо вывести на экран строку с количеством товаров следующего вида: "N товаров", 
 	где N - количество товаров. Нужно написать функцию, которая будет формировать строку с выводом 
 	в правильном склонении в зависимости от числа.
 	*/
@@ -46,7 +46,7 @@
 <form method="get"><input type="text" name="revStr" value="<?php if(isset($_GET['revStr'])){ echo $_GET['revStr'];} ?>" placeholder="Введите строку"><input type="submit"></form>
 <?php 
 	/*
-		Необходимо написать функцию, которая будет в аргументе принимать строку и переворачивать её (делать зеркальной) 
+		2. Необходимо написать функцию, которая будет в аргументе принимать строку и переворачивать её (делать зеркальной) 
 	и возвращать полученный результат. При этом нельзя использовать стандартную функцию PHP strrev.
 	*/
 
@@ -69,37 +69,6 @@
 			echo "$strRev";	
 		}				
 	}
-?>
-<hr>
-<small>6 - преобразовывает Фамилия Имя Отчество в краткую запись Фамилия И.О.</small>
-<form method="get"><input type="text" name="nameUser" placeholder="Введите ФИО полностью"><input type="submit"></form>
-<?php 
-	/*
-		Необходимо написать функцию, которая будет преобразовывать строку Фамилия Имя Отчество в краткую запись Фамилия И.О.
-	*/
-	if(isset($_GET['nameUser'])){
-		$nameUser = trim($_GET['nameUser']);
-		echo "Результат: ";
-		getNameUsr( $nameUser );
-	}
-	function getNameUsr($name){
-		$arrayName = explode(" ", $name);
-		foreach ($arrayName as $key => $value):
-			if(!preg_match('/[^A-Za-z]/', $value)){
-				if($key == 0){
-					echo ucfirst($value) . " ";
-				} else {
-					echo mb_strtoupper($value[0]) . ". ";
-				}			
-			} else {
-				if($key == 0){
-					echo mb_strtoupper(mb_substr($value, 0, 1)) . mb_substr($value, 1) . " ";
-				} else {
-					echo mb_strtoupper(mb_substr($value, 0, 1)) . ". ";
-				}
-			}		
-		endforeach;		
-	}	
 ?>
 <hr>
 <small>3 - Необходимо написать функцию, которая будет работать аналогично функции PHP array_unique</small>
@@ -198,6 +167,37 @@
 <hr>
 <small>5 - Необходимо написать функцию, которая будет работать аналогично функции PHP array_diff</small>
 
+<hr>
+<small>6 - преобразовывает Фамилия Имя Отчество в краткую запись Фамилия И.О.</small>
+<form method="get"><input type="text" name="nameUser" placeholder="Введите ФИО полностью"><input type="submit"></form>
+<?php 
+	/*
+		Необходимо написать функцию, которая будет преобразовывать строку Фамилия Имя Отчество в краткую запись Фамилия И.О.
+	*/
+	if(isset($_GET['nameUser'])){
+		$nameUser = trim($_GET['nameUser']);
+		echo "Результат: ";
+		getNameUsr( $nameUser );
+	}
+	function getNameUsr($name){
+		$arrayName = explode(" ", $name);
+		foreach ($arrayName as $key => $value):
+			if(!preg_match('/[^A-Za-z]/', $value)){
+				if($key == 0){
+					echo ucfirst($value) . " ";
+				} else {
+					echo mb_strtoupper($value[0]) . ". ";
+				}			
+			} else {
+				if($key == 0){
+					echo mb_strtoupper(mb_substr($value, 0, 1)) . mb_substr($value, 1) . " ";
+				} else {
+					echo mb_strtoupper(mb_substr($value, 0, 1)) . ". ";
+				}
+			}		
+		endforeach;		
+	}	
+?>
 <hr>
 <small>7 - определять мобильного оператора, исходя из полученного номера телефона</small>
 <form method="get">
