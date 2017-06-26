@@ -102,6 +102,103 @@
 	}	
 ?>
 <hr>
+<small>3 - Необходимо написать функцию, которая будет работать аналогично функции PHP array_unique</small>
+<br>
+<?php 
+	/*
+		3 - Необходимо написать функцию, которая будет работать аналогично функции PHP array_unique
+		array_unique - Убирает повторяющиеся значения из массива
+	*/
+
+	$arrNoUn = ['Monday', 'Monday', 'Tuesday', 'Tuesday', 'hi', 'Wednesday', 'Thursday', 'Friday', 'Tuesday', 'Monday'];
+
+	$arrRu = ['два', 'три', 'три', 'пять', 'шесть', 'три', 'один'];
+	
+	echo "С повторениями: ";
+	foreach ($arrNoUn as $val) {
+		echo $val . " ";
+	}
+	echo "<br>";
+	echo "С повторениями: ";
+	foreach ($arrRu as $val) {
+		echo $val . " ";
+	}
+	echo "<br>";
+
+	function myArrUniq( $arr ){
+		$arrLeng = count($arr);
+		$arrSort = [];
+
+		for ($i = 0; $i < $arrLeng; $i++) {			
+			if ( isset($arr[$i]) ){
+				for ($j = $i + 1; $j < $arrLeng; $j++) {
+					if( isset($arr[$j]) && ($arr[$i] === $arr[$j]) ){
+						unset($arr[$j]);					
+					} 
+				}
+				$arrSort[] = $arr[$i];
+			}
+			
+		}
+		echo "Без повторений: ";
+		foreach ($arrSort as $val) {
+			echo $val . " ";
+		}
+		echo "<br>";
+	}
+
+	myArrUniq( $arrNoUn );
+	myArrUniq( $arrRu );
+?>
+<hr>
+<small>4 - Необходимо написать функцию, которая будет работать аналогично функции PHP array_chunk</small>
+<?php 
+	/*
+		4. Необходимо написать функцию, которая будет работать аналогично функции PHP array_chunk
+		array_chunk — Разбивает массив на части
+	*/
+	$arrNumChuk = ['один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'];
+
+	echo "<br>массив: ";
+	foreach ($arrNumChuk as $val) {
+		echo $val . " ";
+	}
+	echo "<br>";
+	function myArrChun( $arr, $parts ){
+		$arrLeng = count($arr);
+		$arrChun = [];
+		$tmp = 0;
+
+		for ($i = 0; $i < $arrLeng; $i++) {
+			if(isset( $arr[$i]) ){
+				for ($j = 0; $j < $parts; $j++) {
+					if(isset( $arr[$tmp]) ){
+						$arrChun[$i][] = $arr[$tmp];
+						$tmp++;
+					}
+				}
+			}
+		}
+
+		echo "Разбитый на $parts частей: <br>";
+		foreach ($arrChun as /*$val =>*/ $key) {
+			foreach ($key as $v => $k) {
+				echo $v . " " . $k . " ";
+			}
+			echo "<br>";
+		}
+		echo "<br>";
+		echo "<pre>";
+		var_dump($arrChun);
+		echo "</pre>";
+	}
+
+	myArrChun($arrNumChuk, 2);
+?>
+<hr>
+<small>5 - Необходимо написать функцию, которая будет работать аналогично функции PHP array_diff</small>
+
+<hr>
 <small>7 - определять мобильного оператора, исходя из полученного номера телефона</small>
 <form method="get">
 	<input style="width:400px" type="text" name="phoneUser" placeholder="Введите номер телефона в формате +XXXXXXXXXXX">
