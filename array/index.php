@@ -57,15 +57,26 @@ endforeach;
 
 $band = array_unique($tmpBand);
 
-echo "<pre>";
 var_dump($band);
-echo "</pre>";
 echo "<br>";
 echo count($band);
 echo "<hr>";
 
+// Необходимо удалить все альбомы, датированные 2000-ым годом 
+$delYear = $discography;
+$newArr = [];
+foreach ($delYear as $val => $key) :
+    if( isset($val) && $key['year'] == 2000 ){
+        unset($val);
+    } else {
+        $newArr[] = $val;
+    }
+endforeach;
 
-
+echo "<pre>";
+var_dump($newArr);
+echo "</pre>";
+echo "<br>";
 
 
 
