@@ -158,7 +158,7 @@
 		}
 		echo "<br>";
 		echo "<pre>";
-		var_dump($arrChun);
+		// var_dump($arrChun);
 		echo "</pre>";
 	}
 
