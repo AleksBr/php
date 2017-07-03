@@ -18,7 +18,7 @@
 	}
 ?>
 
-
+<hr>
 <form method="post">
 	<input style="width:600px" type="text" name="img" placeholder="Введите путь к изображению"><input type="submit">
 </form>
@@ -41,5 +41,8 @@
 		$download = "download/";
 		$fileName = $download . $path_parts['basename'];
 		copy($img, $fileName);
+		echo '<img style="max-width:400px" src=' . $fileName . ' alt="">';
 	}
 ?>
+<hr>
+
