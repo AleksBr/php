@@ -62,7 +62,7 @@ echo "<br>";
 echo count($band);
 echo "<hr>";
 
-// Необходимо удалить все альбомы, датированные 2000-ым годом 
+// 03 Необходимо удалить все альбомы, датированные 2000-ым годом 
 $delYear = $discography;
 $newArr = [];
 foreach ($delYear as $val => $key) :
@@ -74,11 +74,31 @@ foreach ($delYear as $val => $key) :
 endforeach;
 
 echo "<pre>";
-var_dump($newArr);
+//var_dump($newArr);
 echo "</pre>";
 echo "<br>";
 
 
+// 04 Необходимо посчитать количество всех альбомов в жанре trip-hop
 
+    $countArr = 0;
+    foreach ($discography as $val) {
+        if( $val['genre'] == 'trip-hop' ){
+            $countArr++;
+        }
+    }
+    echo $countArr;
+    echo "<br>";
+
+// 05 Необходимо посчитать количество всех исполнителей, которые выпускали альбомы в 1994 году
+
+    $cArr = 0;
+    foreach ($discography as $val) {
+        if( $val['year'] == '1994' ){
+            $cArr++;
+        }
+    }
+    echo $cArr;
+    echo "<br>";
 
 ?>
