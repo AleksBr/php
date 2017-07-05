@@ -55,7 +55,6 @@
 		echo "-7-";
 		echo "<br>";
 		echo mb_strtoupper(mb_substr($noTags, 0, 1)) . mb_substr($noTags, 1);
-		//echo $firstBig;
 		echo "<br>";
 
 ?>
