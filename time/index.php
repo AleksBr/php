@@ -11,9 +11,9 @@
 	/* 01 */
 	$nowDay = time();
 	
-	$newYear = strtotime('2018-01-01');
+	$newYear = strtotime('01-01-2018');
 
-	$endSummer = strtotime('2017-09-01');
+	$endSummer = strtotime('01-09-2017');
 
 	$nextMond = strtotime("next Monday");
 
@@ -26,10 +26,9 @@
 
 	/* 02 */
 	
-	$startP = strtotime('2010-02-25');
-	$endP = strtotime('2014-02-22');
-	echo $endP - $startP;
-	echo "<br>";
+	$startP = strtotime('25-02-2010');
+	$endP = strtotime('22-02-2014');
+	echo $endP - $startP;  // 125971200
 	echo "<hr>";
 
 	/* 03 
@@ -56,23 +55,54 @@
 			echo "неверно";
 		} else {
 			$minYear = $year - 10;
-			$timestamp = strtotime("$minYear-06-21");
-
-			for ($i = 0; $i < 10; $i++) {				
-				if (date('w', $timestamp) == 1) {
+			
+			for ($i = 0; $i < 10; $i++) {	
+				$dayD = strtotime("21-06-$minYear");			
+				if (date('w', $dayD) == 1) {
 					echo "есть в $minYear году<br>";
 				} else {
 					echo "нема в $minYear году<br>";
 				}
 				$minYear++;
 			}
-		}
-		
+		}		
 	}
+	echo "<hr>";
 
 	// 4. Необходимо написать функцию, которая будет в качестве значения принимать год и определять в какой день недели в этом году у вас день рождения
+?>
+	<form method="get">
+		<input type="text" name="birth" placeholder="введите год ХХХХ">
+		<input type="submit">
+	</form>
+<?php
+	if( isset($_GET['birth']) ){
+		$birthUser = trim($_GET['birth']);
+		echo "Результат: ";
+		getBirth( $birthUser );
+	}
 
+	function getBirth($year){
+		$dayU = strtotime("28-11-$year");
+		echo date("l", $dayU);
+	}
+	echo "<hr>";
 	// 5. Определите количество високосных годов, которые вы прожили за жизнь
+
+	$birthDay = 1986;
+	$toDay = date("Y", time());
+	$yearU = $toDay - $birthDay;
+	$countL = 0;
+
+	for ($i = 0; $i < $yearU; $i++) {		
+		if(date("L", strtotime("28-11-$birthDay")/*mktime(0,0,0,1,1, $birthDay)*/)){
+			$countL++;
+			//echo "Высокосный год $birthDay<br>";
+		}
+		$birthDay++;		
+	}
+	echo "Всего $countL високосных годов";
+	echo "<hr>";
 
 	// 6. Необходимо написать функцию, которая будет принимать в качестве аргумента время в часах и минутах и возвращать массив, состоящий из двух значений - разница во времени с Нью-Йорком и разница во времени с Токио
 
