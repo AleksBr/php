@@ -110,9 +110,26 @@
 	echo "<hr>";
 
 	// 6. Необходимо написать функцию, которая будет принимать в качестве аргумента время в часах и минутах и возвращать массив, состоящий из двух значений - разница во времени с Нью-Йорком и разница во времени с Токио
+	// Asia/Tokyo
+	// America/New_York
+	function timeMy($h, $i){
+		$y = date("Y");
+		$asia = new DateTime('Asia/Tokyo');
+		$amer = new DateTime('America/New_York');
+		$euro = new DateTime();
+		$euro->setTime($h, $i);
+		$euroH = $euro->format('H-i');
+		$asiaH = $asia->format('H-i');
+		$amerH = $amer->format('H-i');
+		echo $asiaH . "<br>";
+		echo $amerH;
+		$different = date_diff($euroH, $asiaH); 
+		echo $different->format('H');
+	}
 
 
-
+	timeMy(12, 24);
+	echo "<hr>";
 	// 7. Необходимо написать функцию (в качестве аргумента принимает год), которая будет определять количество 13 пятниц в году
 
 	function myFriday( $year ){
