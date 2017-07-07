@@ -121,14 +121,15 @@
 		$euroH = $euro->format('H-i');
 		$asiaH = $asia->format('H-i');
 		$amerH = $amer->format('H-i');
+		echo $euroH . "<br>";
 		echo $asiaH . "<br>";
 		echo $amerH;
-		$different = date_diff($euroH, $asiaH); 
-		echo $different->format('H');
+		//$different = date_diff($euroH, $asiaH); 
+		//echo $different->format('H');
 	}
 
 
-	timeMy(12, 24);
+	timeMy(17, 55);
 	echo "<hr>";
 	// 7. Необходимо написать функцию (в качестве аргумента принимает год), которая будет определять количество 13 пятниц в году
 
