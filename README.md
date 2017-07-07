@@ -2,6 +2,7 @@
 
 ##### задания / презентации 
 
+[xz](https://habrahabr.ru/post/305926/)
 
 [xz](https://habrahabr.ru/post/193380/)
 
