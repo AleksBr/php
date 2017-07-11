@@ -10,4 +10,6 @@
 
 [xz](https://habrahabr.ru/post/254773/)
 
+[sql ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04)
+
 [лекции](http://project260218.tilda.ws/php-development)
